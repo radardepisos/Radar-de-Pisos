@@ -92,16 +92,14 @@ export default function AlertList() {
 
         const matchesCity = !userPrefs.city || l.city.toLowerCase().includes(userPrefs.city.toLowerCase());
         const matchesPrice = !userPrefs.max_price || l.price <= userPrefs.max_price;
-        // min_rooms is not currently in detected_listings schema in SQL, 
-        // will skip for now or assume scraper adds it later.
 
         return matchesCity && matchesPrice;
     });
 
     if (loading) {
-        return <div className="animate-pulse space-y-4">
+        return <div className="space-y-4">
             {[1, 2, 3].map(i => (
-                <div key={i} className="h-24 bg-neutral-100 dark:bg-neutral-800 rounded-2xl" />
+                <div key={i} className="h-32 bg-neutral-100 rounded-2xl animate-pulse" />
             ))}
         </div>;
     }
@@ -109,35 +107,35 @@ export default function AlertList() {
     return (
         <div className="space-y-4 relative">
             {newAlert && (
-                <div className="fixed top-24 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-3 rounded-full text-xs font-black shadow-[0_0_40px_rgba(59,130,246,0.5)] flex items-center animate-bounce z-50 tracking-widest">
+                <div className="fixed top-24 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-3 rounded-full text-xs font-black shadow-xl flex items-center animate-bounce z-50 tracking-widest">
                     <Sparkles className="w-4 h-4 mr-2" />
                     NUEVA SEÑAL DETECTADA
                 </div>
             )}
 
             {filteredListings.length === 0 ? (
-                <div className="text-center py-20 border-2 border-dashed border-neutral-800 rounded-[2.5rem] bg-neutral-900/30">
+                <div className="text-center py-20 border-2 border-dashed border-neutral-100 rounded-[2.5rem] bg-neutral-50/50">
                     <div className="text-5xl mb-6 opacity-30">📡</div>
-                    <p className="text-neutral-500 font-bold uppercase tracking-widest text-xs">
-                        Sincronizando con satélites...
+                    <p className="text-neutral-400 font-bold uppercase tracking-widest text-xs">
+                        Sincronizando con portales...
                     </p>
                 </div>
             ) : (
                 filteredListings.map((listing) => (
                     <div
                         key={listing.id}
-                        className="flex flex-col sm:flex-row gap-6 p-2 monitoring-card rounded-[2rem] overflow-hidden group"
+                        className="flex flex-col sm:flex-row gap-6 p-2 monitoring-card rounded-[2rem] overflow-hidden group border border-neutral-100 bg-white"
                     >
-                        <div className="w-full sm:w-48 h-32 rounded-[1.5rem] overflow-hidden flex-shrink-0 bg-neutral-800 relative">
+                        <div className="w-full sm:w-48 h-32 rounded-[1.5rem] overflow-hidden flex-shrink-0 bg-neutral-50 relative">
                             <img
                                 src={listing.thumbnail_url}
                                 alt={listing.title}
-                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                 onError={(e) => {
                                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=300&q=80';
                                 }}
                             />
-                            <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-white text-[9px] px-3 py-1 rounded-full font-black tracking-widest border border-white/10 uppercase">
+                            <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-neutral-900 text-[9px] px-3 py-1 rounded-full font-black tracking-widest border border-black/5 uppercase">
                                 {listing.id.includes('fotocasa') ? 'Fotocasa' : 'Idealista'}
                             </div>
                         </div>
@@ -145,22 +143,22 @@ export default function AlertList() {
                         <div className="flex-1 flex flex-col justify-between py-4 pr-6">
                             <div>
                                 <div className="flex justify-between items-start mb-2">
-                                    <h3 className="font-black text-xl text-white tracking-tight group-hover:text-primary transition-colors">{listing.title}</h3>
+                                    <h3 className="font-black text-xl text-neutral-900 tracking-tight group-hover:text-primary transition-colors">{listing.title}</h3>
                                     <div className="text-right">
                                         <span className="text-primary font-black text-3xl tracking-tighter leading-none">{listing.price}€</span>
-                                        <p className="text-[9px] text-neutral-600 font-black uppercase tracking-widest mt-1">Mensual</p>
+                                        <p className="text-[9px] text-neutral-400 font-black uppercase tracking-widest mt-1">Mensual</p>
                                     </div>
                                 </div>
-                                <div className="flex items-center text-sm text-neutral-400 font-bold">
+                                <div className="flex items-center text-sm text-neutral-500 font-bold">
                                     <MapPin className="w-3.5 h-3.5 mr-1.5 text-primary" />
                                     {listing.city}
                                 </div>
                             </div>
 
-                            <div className="flex justify-between items-center mt-4">
+                            <div className="flex justify-between items-center mt-4 text-neutral-600">
                                 <div className="flex items-center space-x-2">
-                                    <span className="flex h-1.5 w-1.5 rounded-full bg-primary/50 animate-pulse"></span>
-                                    <span className="text-[10px] text-neutral-600 font-black uppercase tracking-widest">
+                                    <span className="flex h-1.5 w-1.5 rounded-full bg-primary/30 animate-pulse"></span>
+                                    <span className="text-[10px] text-neutral-400 font-black uppercase tracking-widest">
                                         HACE {Math.max(1, Math.floor((new Date().getTime() - new Date(listing.detected_at).getTime()) / 60000))} MINUTOS
                                     </span>
                                 </div>
@@ -168,7 +166,7 @@ export default function AlertList() {
                                     href={listing.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center px-6 py-2 bg-white text-black text-[11px] font-black rounded-xl hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-xl"
+                                    className="inline-flex items-center px-6 py-2 bg-neutral-900 text-white text-[11px] font-black rounded-xl hover:bg-primary transition-all transform active:scale-95 shadow-sm"
                                 >
                                     ABRIR FICHA
                                     <ExternalLink className="w-3.5 h-3.5 ml-2" />
