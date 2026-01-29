@@ -19,8 +19,8 @@ export default function Hero() {
                 </div>
 
                 <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black text-neutral-900 dark:text-white mb-6 lg:mb-8 leading-[1.1] tracking-tighter">
-                    El radar más rápido <br />
-                    <span className="premium-gradient bg-clip-text text-transparent">del mercado inmobiliario</span>
+                    InmoAlert: El radar <br />
+                    <span className="premium-gradient bg-clip-text text-transparent">de inversión inmobiliaria</span>
                 </h1>
 
                 <p className="max-w-3xl mx-auto text-lg sm:text-xl lg:text-2xl text-neutral-600 dark:text-neutral-400 mb-10 lg:mb-12 leading-relaxed px-4 sm:px-0">

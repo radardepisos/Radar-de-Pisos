@@ -13,7 +13,7 @@ export default function DashboardPage() {
                     </span>
                     <span>Radar Activo • Escaneando Portales</span>
                 </div>
-                <h1 className="text-4xl font-black tracking-tighter mb-2">Mi Radar</h1>
+                <h1 className="text-4xl font-black tracking-tighter mb-2">Mi Radar de Inversión</h1>
                 <p className="text-neutral-500 font-medium">Gestiona tu búsqueda y revisa los últimos pisos detectados.</p>
             </div>
 

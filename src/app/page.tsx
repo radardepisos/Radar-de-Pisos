@@ -67,13 +67,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Legal Disclaimer Section */}
+      <section className="py-20 bg-neutral-100/50 dark:bg-neutral-900/20 border-t border-neutral-100 dark:border-neutral-800">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h4 className="text-xs font-black uppercase tracking-[0.2em] text-neutral-400 mb-6">Aviso Legal de Agregador</h4>
+          <p className="text-sm text-neutral-500 leading-relaxed">
+            InmoAlert es un motor de búsqueda y agregador de información inmobiliaria. El contenido indexado proviene de fuentes públicas y portales externos. InmoAlert no es dueño de los anuncios ni tiene relación comercial directa con la publicación original salvo que se indique lo contrario. La propiedad intelectual de las imágenes, descripciones y datos de los anuncios pertenece exclusivamente a sus respectivos portales (Idealista, Fotocasa, etc.) y a los anunciantes originales.
+          </p>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="py-20 border-t border-neutral-100 dark:border-neutral-800">
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-center space-y-8">
           <div className="flex items-center space-x-2 grayscale opacity-50">
-            <span className="text-xl font-black tracking-tighter">RADAR DE PISOS</span>
+            <span className="text-xl font-black tracking-tighter tracking-widest text-primary">INMOALERT</span>
           </div>
-          <p className="text-neutral-400 font-medium tracking-tight">© 2026 Radar de Pisos. Made with ❤️ for the Spanish market.</p>
+          <p className="text-neutral-400 font-medium tracking-tight">© 2026 InmoAlert: Radar de Inversión. Made with ❤️ for the Spanish market.</p>
         </div>
       </footer>
     </main>

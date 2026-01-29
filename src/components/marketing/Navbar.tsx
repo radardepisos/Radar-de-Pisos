@@ -17,7 +17,7 @@ export default function Navbar() {
                                 />
                             </div>
                             <span className="text-2xl font-black tracking-tighter premium-gradient bg-clip-text text-transparent">
-                                RADAR DE PISOS
+                                INMOALERT
                             </span>
                         </Link>
                     </div>
