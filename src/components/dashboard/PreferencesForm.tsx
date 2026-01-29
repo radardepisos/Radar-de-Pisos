@@ -2,37 +2,34 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
+import { Save, ExternalLink } from 'lucide-react';
 
 export default function PreferencesForm() {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
-    const [isActive, setIsActive] = useState(false);
-    const [city, setCity] = useState('');
-    const [maxPrice, setMaxPrice] = useState(1000);
-    const [minRooms, setMinRooms] = useState(1);
+    const [searchUrl, setSearchUrl] = useState('');
+    const [whatsappNumber, setWhatsappNumber] = useState('');
     const supabase = createClient();
 
     useEffect(() => {
-        async function loadPreferences() {
+        async function loadProfile() {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) return;
 
             const { data, error } = await supabase
-                .from('search_preferences')
-                .select('*')
-                .eq('user_id', user.id)
+                .from('profiles')
+                .select('search_url, whatsapp_number')
+                .eq('id', user.id)
                 .single();
 
             if (data) {
-                setCity(data.city);
-                setMaxPrice(data.max_price);
-                setMinRooms(data.min_rooms);
-                setIsActive(data.is_active);
+                setSearchUrl(data.search_url || '');
+                setWhatsappNumber(data.whatsapp_number || '');
             }
             setLoading(false);
         }
 
-        loadPreferences();
+        loadProfile();
     }, [supabase]);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -43,96 +40,69 @@ export default function PreferencesForm() {
         if (!user) return;
 
         const { error } = await supabase
-            .from('search_preferences')
+            .from('profiles')
             .upsert({
-                user_id: user.id,
-                city,
-                max_price: maxPrice,
-                min_rooms: minRooms,
-                is_active: isActive,
+                id: user.id,
+                search_url: searchUrl,
+                whatsapp_number: whatsappNumber,
                 updated_at: new Date().toISOString(),
-            }, { onConflict: 'user_id' }); // Note: Need a unique constraint on user_id for single-preference logic
+            });
 
         if (error) {
-            alert('Error guardando preferencias: ' + error.message);
+            alert('Error guardando configuración: ' + error.message);
         } else {
-            alert('Preferencias guardadas correctamente');
+            alert('Configuración guardada. Tu radar se actualizará en 2 minutos.');
         }
         setSaving(false);
     };
 
-    if (loading) return <div>Cargando...</div>;
+    if (loading) return <div className="animate-pulse h-48 bg-neutral-100 dark:bg-neutral-800 rounded-3xl" />;
 
     return (
         <div className="bg-white dark:bg-neutral-800 rounded-3xl p-8 border border-neutral-100 dark:border-neutral-700 shadow-sm">
-            <div className="flex justify-between items-center mb-8">
-                <div>
-                    <h2 className="text-xl font-bold">Configuración del Radar</h2>
-                    <p className="text-sm text-neutral-500">Define qué tipo de pisos quieres encontrar.</p>
-                </div>
-
-                <div className="flex items-center space-x-3">
-                    <span className={`text-sm font-bold ${isActive ? 'text-green-500' : 'text-neutral-400'}`}>
-                        {isActive ? 'RADAR ACTIVO' : 'PAUSADO'}
-                    </span>
-                    <button
-                        type="button"
-                        onClick={() => setIsActive(!isActive)}
-                        className={`w-14 h-8 rounded-full transition-all relative ${isActive ? 'bg-green-500' : 'bg-neutral-300 dark:bg-neutral-600'}`}
-                    >
-                        <div className={`absolute top-1 w-6 h-6 bg-white rounded-full transition-all ${isActive ? 'left-7' : 'left-1'}`} />
-                    </button>
-                </div>
+            <div className="mb-8">
+                <h2 className="text-xl font-bold">Configuración de tu Sniper</h2>
+                <p className="text-sm text-neutral-500">Pega aquí tu búsqueda de Idealista y tu número de móvil.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium mb-2">Ciudad o Zona</label>
-                        <input
-                            type="text"
-                            required
-                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-600 bg-transparent focus:ring-2 focus:ring-primary outline-none"
-                            placeholder="Ej: Madrid, Chamberí..."
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium mb-2">Precio Máximo (€/mes)</label>
-                        <input
-                            type="number"
-                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-600 bg-transparent focus:ring-2 focus:ring-primary outline-none"
-                            value={maxPrice}
-                            onChange={(e) => setMaxPrice(parseInt(e.target.value))}
-                        />
-                    </div>
+                <div>
+                    <label className="block text-sm font-medium mb-2 flex justify-between">
+                        URL de búsqueda Idealista
+                        <a href="https://www.idealista.com" target="_blank" className="text-primary text-xs flex items-center">
+                            Ir a Idealista <ExternalLink className="w-3 h-3 ml-1" />
+                        </a>
+                    </label>
+                    <input
+                        type="url"
+                        required
+                        className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-600 bg-transparent focus:ring-2 focus:ring-primary outline-none"
+                        placeholder="https://www.idealista.com/alquiler-viviendas/madrid-madrid/..."
+                        value={searchUrl}
+                        onChange={(e) => setSearchUrl(e.target.value)}
+                    />
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium mb-2">Mínimo Habitaciones</label>
-                        <select
-                            className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-600 bg-transparent focus:ring-2 focus:ring-primary outline-none appearance-none"
-                            value={minRooms}
-                            onChange={(e) => setMinRooms(parseInt(e.target.value))}
-                        >
-                            <option value={0}>Estudio / Loft</option>
-                            <option value={1}>1 Habitación</option>
-                            <option value={2}>2 Habitaciones</option>
-                            <option value={3}>3+ Habitaciones</option>
-                        </select>
-                    </div>
-                    <div className="flex items-end">
-                        <button
-                            type="submit"
-                            disabled={saving}
-                            className="w-full py-3 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold transition-all disabled:opacity-50 shadow-lg shadow-primary/20"
-                        >
-                            {saving ? 'Guardando...' : 'Guardar Configuración'}
-                        </button>
-                    </div>
+                <div>
+                    <label className="block text-sm font-medium mb-2">WhatsApp (con prefijo, ej: +34...)</label>
+                    <input
+                        type="tel"
+                        required
+                        className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-600 bg-transparent focus:ring-2 focus:ring-primary outline-none"
+                        placeholder="+34600000000"
+                        value={whatsappNumber}
+                        onChange={(e) => setWhatsappNumber(e.target.value)}
+                    />
                 </div>
+
+                <button
+                    type="submit"
+                    disabled={saving}
+                    className="w-full py-4 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold transition-all disabled:opacity-50 shadow-lg shadow-primary/20 flex items-center justify-center"
+                >
+                    <Save className="w-5 h-5 mr-2" />
+                    {saving ? 'Guardando...' : 'Guardar y Activar Sniper'}
+                </button>
             </form>
         </div>
     );
