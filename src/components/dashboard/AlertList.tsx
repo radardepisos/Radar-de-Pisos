@@ -109,7 +109,7 @@ export default function AlertList() {
     return (
         <div className="space-y-4 relative">
             {newAlert && (
-                <div className="fixed top-24 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-3 rounded-full text-xs font-black shadow-[0_0_40px_rgba(34,197,94,0.4)] flex items-center animate-bounce z-50 tracking-widest">
+                <div className="fixed top-24 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-3 rounded-full text-xs font-black shadow-[0_0_40px_rgba(59,130,246,0.5)] flex items-center animate-bounce z-50 tracking-widest">
                     <Sparkles className="w-4 h-4 mr-2" />
                     NUEVA SEÑAL DETECTADA
                 </div>
