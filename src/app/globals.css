@@ -5,24 +5,23 @@
   /* Blue 500 */
   --color-primary-dark: #2563eb;
   /* Blue 600 */
-  --color-accent: #0ea5e9;
-  /* Sky 500 */
+  --color-accent: #60a5fa;
+  /* Blue 400 (Brighter for accent) */
   --color-neutral-50: #f8fafc;
   --color-neutral-100: #f1f5f9;
-  --color-neutral-400: #cbd5e1;
-  /* Lighter grey for better visibility */
-  --color-neutral-500: #94a3b8;
-  /* Lighter grey for better visibility */
-  --color-neutral-800: #1e293b;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
   --color-neutral-900: #020617;
-  /* Deep Blue-Black */
+  /* Deepest blue-black */
 }
 
 :root {
   --background: #020617;
-  --foreground: #f8fafc;
+  --foreground: #ffffff;
+  /* Absolute white for main text */
   --card: #0f172a;
-  --card-foreground: #f8fafc;
+  --card-foreground: #ffffff;
   --border: #1e293b;
   --ring: #3b82f6;
 }
@@ -34,8 +33,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* High visibility text gradients */
 .premium-gradient {
-  background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -44,9 +44,9 @@ body {
 }
 
 .glass {
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .radar-pulse {
@@ -63,13 +63,13 @@ body {
 }
 
 .monitoring-card {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+  background: #0f172a;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  /* Slightly more visible border for blue theme */
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .monitoring-card:hover {
-  border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.2);
+  border-color: #3b82f6;
+  box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
 }
