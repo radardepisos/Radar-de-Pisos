@@ -43,6 +43,12 @@ body {
 
 .premium-gradient {
   background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  display: inline-block;
+  /* Ensure it stays tight to the text */
 }
 
 .glass {
