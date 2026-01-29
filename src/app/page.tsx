@@ -9,14 +9,14 @@ export default function Home() {
       <Hero />
 
       {/* Features Section */}
-      <section id="features" className="py-32 relative overflow-hidden">
+      <section id="features" className="py-20 lg:py-32 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl lg:text-6xl font-black mb-6 tracking-tight">Potencia absoluta para <br /><span className="text-primary">encontrar tu casa</span></h2>
-            <p className="text-xl text-neutral-500 max-w-2xl mx-auto">En el mercado actual, 10 minutos marcan la diferencia entre conseguir el piso o quedarte fuera.</p>
+          <div className="text-center mb-16 lg:mb-24">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black mb-6 tracking-tight">Potencia absoluta para <br className="hidden sm:block" /><span className="text-primary">encontrar tu casa</span></h2>
+            <p className="text-lg sm:text-xl text-neutral-500 max-w-2xl mx-auto">En el mercado actual, 10 minutos marcan la diferencia entre conseguir el piso o quedarte fuera.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12">
             <FeatureCard
               title="Monitorización 24/7"
               description="Nuestros agentes revisan los portales cada minuto. No se nos escapa ni un solo anuncio."
