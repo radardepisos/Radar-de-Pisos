@@ -59,7 +59,7 @@ export default function Home() {
               <li className="flex items-center font-medium"><Check className="text-primary mr-3 w-5 h-5" /> Análisis por IA (Gemini) incluido</li>
             </ul>
 
-            <button className="w-full py-5 bg-primary hover:bg-primary-dark text-white rounded-2xl font-black text-xl transition-all shadow-xl shadow-primary/30 transform hover:scale-[1.02]">
+            <button className="w-full py-5 bg-primary hover:bg-primary-dark text-white rounded-2xl font-black text-xl transition-all shadow-xl shadow-primary/40 transform hover:scale-[1.02]">
               Activar mi Radar Sniper
             </button>
             <p className="mt-6 text-sm text-neutral-400 font-medium">Sin compromiso, cancela cuando quieras.</p>
@@ -92,10 +92,10 @@ export default function Home() {
 
 function FeatureCard({ title, description, icon }: { title: string, description: string, icon: React.ReactNode }) {
   return (
-    <div className="p-10 rounded-[2.5rem] bg-white dark:bg-neutral-800 border border-neutral-100 dark:border-neutral-700 hover:border-primary/40 transition-all group shadow-sm hover:shadow-xl hover:-translate-y-2">
+    <div className="p-10 rounded-[2.5rem] bg-white dark:bg-neutral-800 border border-neutral-100 dark:border-neutral-700 hover:border-primary/50 transition-all group shadow-sm hover:shadow-xl hover:-translate-y-2">
       <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">{icon}</div>
       <h3 className="text-2xl font-black mb-4 tracking-tight">{title}</h3>
-      <p className="text-neutral-500 leading-relaxed font-medium">{description}</p>
+      <p className="text-neutral-500 leading-relaxed font-bold">{description}</p>
     </div>
   );
 }
