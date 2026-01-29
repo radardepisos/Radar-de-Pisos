@@ -22,18 +22,18 @@ export default function Navbar() {
                         </Link>
                     </div>
                     <div className="hidden md:flex items-center space-x-10">
-                        <Link href="#features" className="text-sm font-semibold text-neutral-600 dark:text-neutral-300 hover:text-primary transition-colors">
+                        <Link href="#features" className="text-xs font-black tracking-widest text-neutral-300 hover:text-white transition-colors">
                             CÓMO FUNCIONA
                         </Link>
-                        <Link href="#pricing" className="text-sm font-semibold text-neutral-600 dark:text-neutral-300 hover:text-primary transition-colors">
+                        <Link href="#pricing" className="text-xs font-black tracking-widest text-neutral-300 hover:text-white transition-colors">
                             PRECIOS
                         </Link>
-                        <Link href="/login" className="text-sm font-semibold text-neutral-600 dark:text-neutral-300 hover:text-primary transition-colors">
+                        <Link href="/login" className="text-xs font-black tracking-widest text-neutral-300 hover:text-white transition-colors border-b-2 border-primary/40 pb-1">
                             INICIAR SESIÓN
                         </Link>
                         <Link
                             href="/register"
-                            className="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-2xl font-bold transition-all transform hover:scale-105 shadow-xl shadow-primary/30"
+                            className="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-2xl font-black transition-all transform hover:scale-105 shadow-xl shadow-primary/40 text-sm"
                         >
                             EMPEZAR AHORA
                         </Link>

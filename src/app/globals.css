@@ -9,6 +9,10 @@
   /* Sky 500 */
   --color-neutral-50: #f8fafc;
   --color-neutral-100: #f1f5f9;
+  --color-neutral-400: #cbd5e1;
+  /* Lighter grey for better visibility */
+  --color-neutral-500: #94a3b8;
+  /* Lighter grey for better visibility */
   --color-neutral-800: #1e293b;
   --color-neutral-900: #020617;
   /* Deep Blue-Black */
