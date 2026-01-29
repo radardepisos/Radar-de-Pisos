@@ -18,16 +18,16 @@ export default function Hero() {
                     <span>Monitorización 24/7 en directo</span>
                 </div>
 
-                <h1 className="text-6xl lg:text-8xl font-black text-neutral-900 dark:text-white mb-8 leading-[1.1] tracking-tighter">
+                <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black text-neutral-900 dark:text-white mb-6 lg:mb-8 leading-[1.1] tracking-tighter">
                     El radar más rápido <br />
                     <span className="premium-gradient bg-clip-text text-transparent">del mercado inmobiliario</span>
                 </h1>
 
-                <p className="max-w-3xl mx-auto text-xl lg:text-2xl text-neutral-600 dark:text-neutral-400 mb-12 leading-relaxed">
+                <p className="max-w-3xl mx-auto text-lg sm:text-xl lg:text-2xl text-neutral-600 dark:text-neutral-400 mb-10 lg:mb-12 leading-relaxed px-4 sm:px-0">
                     No pierdas tiempo refrescando portales. Recibe alertas instantáneas en <span className="text-primary font-bold">WhatsApp</span> el mismo segundo que se publica un piso.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-16 lg:mb-20 px-4 sm:px-0">
                     <Link
                         href="/register"
                         className="w-full sm:w-auto px-10 py-5 bg-primary hover:bg-primary-dark text-white rounded-2xl font-black text-xl transition-all shadow-2xl shadow-primary/30 transform hover:-translate-y-1 active:scale-95"
